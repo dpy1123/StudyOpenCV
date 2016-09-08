@@ -25,6 +25,13 @@ public class BasicDraw {
                 Arrays.asList(new MatOfPoint(new Point(10,300), new Point(20, 300), new Point(30,310),new Point(100,280))),
                 new Scalar(255, 255, 255));
 
+        String text = "Hello OpenCV!";
+        int[] baseLine = new int[1];
+        //[out]	baseLine	y-coordinate of the baseline relative to the bottom-most text point.
+        Size size = Imgproc.getTextSize(text,Core.FONT_HERSHEY_SIMPLEX, 1.2, 2, baseLine);
+        Imgproc.putText(board, text, new Point((480-size.width)/2, size.height),//以文字的左下角为锚点
+                Core.FONT_HERSHEY_SIMPLEX, 1.2, new Scalar(255,255,255), 2);
+        System.out.println(baseLine[0]);//值是12 不知道是什么含义
         Imgcodecs.imwrite("/Users/dd/Documents/tmp/draw.jpg", board);
     }
 }
